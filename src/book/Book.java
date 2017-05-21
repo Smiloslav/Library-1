@@ -33,11 +33,15 @@ public class Book implements Serializable{
     }
 
     public void addAuthor(Author author) {
-        this.authorsList.add(author);
+        if(!authorsList.contains(author))
+            this.authorsList.add(author);
+        else
+            throw new RuntimeException("This author is already added.");
     }
 
     public void addAuthor(String name, String surname){
-        this.authorsList.add(new Author(name,surname));
+        Author author = new Author(name,surname);
+        addAuthor(author);
     }
 
     public void removeAuthor(int index){
@@ -68,9 +72,9 @@ public class Book implements Serializable{
             return "Author list is empty, please add authorsList.";
         }
 
-        String tempAuthor = null;
+        String tempAuthor = "";
         for (Author author: authorsList) {
-            tempAuthor += author.toString() + "\n";
+            tempAuthor += author.toString() + " ";
         }
         return tempAuthor;
     }
@@ -80,7 +84,7 @@ public class Book implements Serializable{
         String toString = "Title: " + getTitle() + "\n";
         toString += "Description: " + getDescription() + "\n";
         toString += "Publisher: " + getPublisher().getName() + "\n";
-        toString += "Author list:\n" + getAuthorList();
+        toString += "Author list: " + getAuthorList() + "\n";
         toString += "ISBN: " + isbn;
         return toString;
     }
