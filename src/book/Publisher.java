@@ -6,9 +6,9 @@ public class Publisher implements Serializable {
     private String name;
     private String description;
 
-    public Publisher(String name, String description){
+    public Publisher(String name){
         setName(name);
-        setDescription(description);
+        description = "";
     }
 
     public String getName() {

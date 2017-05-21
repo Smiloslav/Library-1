@@ -10,9 +10,12 @@ public class Book implements Serializable{
     private ArrayList<Author> author;
     private final Long isbn;
 
-    public Book(String title, String description, Publisher publisher, Author author, Long isbn) {
-        super();
+    public Book(Long isbn) {
         this.isbn = isbn;
+        title = "";
+        description = "";
+        publisher = null;
+        author = new ArrayList<>();
     }
 
     // setter
@@ -60,5 +63,26 @@ public class Book implements Serializable{
         return publisher;
     }
 
-    public 
+    public String getAuthorList(){
+        if (author.isEmpty()){
+            return "Author list is empty, please add author.";
+        }
+
+        String tempAuthor = null;
+        for (int i = 0; i < author.size(); i++) {
+            tempAuthor += author.get(i).toString() + "\n";
+        }
+
+        return tempAuthor;
+    }
+
+    @Override
+    public String toString() {
+        String toString = "Title: " + getTitle() + "\n";
+        toString += "Description: " + getDescription() + "\n";
+        toString += "Publisher: " + getPublisher().getName() + "\n";
+        toString += "Author list:\n" + getAuthorList();
+        toString += "ISBN: " + isbn;
+        return toString;
+    }
 }
