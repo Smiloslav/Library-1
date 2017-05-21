@@ -7,7 +7,7 @@ public class Book implements Serializable{
     private String title;
     private String description;
     private Publisher publisher;
-    private ArrayList<Author> author;
+    private ArrayList<Author> authorsList;
     private final Long isbn;
 
     public Book(Long isbn) {
@@ -15,7 +15,7 @@ public class Book implements Serializable{
         title = "";
         description = "";
         publisher = null;
-        author = new ArrayList<>();
+        authorsList = new ArrayList<>();
     }
 
     // setter
@@ -33,16 +33,16 @@ public class Book implements Serializable{
     }
 
     public void addAuthor(Author author) {
-        this.author.add(author);
+        this.authorsList.add(author);
     }
 
     public void addAuthor(String name, String surname){
-        this.author.add(new Author(name,surname));
+        this.authorsList.add(new Author(name,surname));
     }
 
     public void removeAuthor(int index){
         try{
-            this.author.remove(index);
+            this.authorsList.remove(index);
         }catch (IndexOutOfBoundsException ex){
             ex.getMessage();
         }
@@ -64,15 +64,14 @@ public class Book implements Serializable{
     }
 
     public String getAuthorList(){
-        if (author.isEmpty()){
-            return "Author list is empty, please add author.";
+        if (authorsList.isEmpty()){
+            return "Author list is empty, please add authorsList.";
         }
 
         String tempAuthor = null;
-        for (int i = 0; i < author.size(); i++) {
-            tempAuthor += author.get(i).toString() + "\n";
+        for (Author author: authorsList) {
+            tempAuthor += author.toString() + "\n";
         }
-
         return tempAuthor;
     }
 
