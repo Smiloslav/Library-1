@@ -1,19 +1,17 @@
 package book;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Book implements Serializable{
     private String title;
     private String description;
     private Publisher publisher;
-    private Author author;
+    private ArrayList<Author> author;
     private final Long isbn;
 
     public Book(String title, String description, Publisher publisher, Author author, Long isbn) {
-        this.title = title;
-        this.description = description;
-        this.publisher = publisher;
-        this.author = author;
+        super();
         this.isbn = isbn;
     }
 
@@ -31,8 +29,20 @@ public class Book implements Serializable{
         this.publisher = publisher;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void addAuthor(Author author) {
+        this.author.add(author);
+    }
+
+    public void addAuthor(String name, String surname){
+        this.author.add(new Author(name,surname));
+    }
+
+    public void removeAuthor(int index){
+        try{
+            this.author.remove(index);
+        }catch (IndexOutOfBoundsException ex){
+            ex.getMessage();
+        }
     }
 
     // getter
@@ -50,7 +60,5 @@ public class Book implements Serializable{
         return publisher;
     }
 
-    public Author getAuthor() {
-        return author;
-    }
+    public 
 }
