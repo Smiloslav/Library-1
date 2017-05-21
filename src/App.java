@@ -1,5 +1,9 @@
-/**
- * Created by Kuba on 2017-05-21.
- */
+import testuje.Klasa;
+
 public class App {
+    public static void main(String[] args) {
+        Klasa klasa = new Klasa(5);
+
+        klasa.testtest();
+    }
 }
